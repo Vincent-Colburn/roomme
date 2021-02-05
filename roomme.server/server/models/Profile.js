@@ -5,6 +5,7 @@ const Profile = new Schema(
   {
     name: { type: String, required: true },
     age: { type: Number, required: true },
+    gender: { type: String, required: true },
     location: { type: Number, required: true },
     aboutMe: { type: String, required: true },
     imgURL: { type: String },
@@ -14,7 +15,8 @@ const Profile = new Schema(
     interests: { type: String },
     lifestyleOptions: { type: String },
     room: { type: String, ref: 'Room' },
-    match: { type: String, ref: 'Match' },
+    // NOTE in a many-to-many relationship, only the Match would need the people ID's, so commenting out "match" for now
+    // match: { type: String, ref: 'Match' },
     anticipatedMoveInDate: { type: Date, required: true },
     creatorId: { type: String, required: true }
   },
