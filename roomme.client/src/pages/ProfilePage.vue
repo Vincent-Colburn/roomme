@@ -10,32 +10,32 @@
     </div>
     <div class="row">
       <div class="offset-2 col-2">
-        <img :src="state.profile.imgUrl" class="img-fluid" alt="">
+        <img :src="profile.imgUrl" class="img-fluid" alt="">
       </div>
       <div class="col water offset-1">
         <div class="row my-2">
           <div class="col">
-            <h3>Name: {{ state.profile.name }}</h3>
+            <h3>Name: {{ profile.name }}</h3>
           </div>
         </div>
         <div class="row my-2">
           <div class="col">
-            <h3>Age: {{ state.profile.age }}</h3>
+            <h3>Age: {{ profile.age }}</h3>
           </div>
         </div>
         <div class="row my-2">
           <div class="col">
-            <h3>Gender: {{ state.profile.gender }}</h3>
+            <h3>Gender: {{ profile.gender }}</h3>
           </div>
         </div>
         <div class="row my-2">
           <div class="col">
-            <h3>Interests: {{ state.profile.interests }}</h3>
+            <h3>Interests: {{ profile.interests }}</h3>
           </div>
         </div>
         <div class="row my-2">
           <div class="col">
-            <h3>Price range: {{ state.profile.priceRange }}</h3>
+            <h3>Price range: {{ profile.priceRange }}</h3>
           </div>
         </div>
       </div>
@@ -44,7 +44,7 @@
       <div class="col"></div>
       <div class="col-9">
         <h4>About Me:</h4>
-        <p>{{ state.profile.aboutMe }}</p>
+        <p>{{ profile.aboutMe }}</p>
       </div>
       <div class="col"></div>
     </div>
@@ -55,7 +55,7 @@
           Lifestyle Choices:
         </h4>
         <p>
-          {{ state.profile.lifestyleOptions }}
+          {{ profile.lifestyleOptions }}
         </p>
       </div>
       <div class="col"></div>
@@ -69,27 +69,78 @@
        aria-labelledby="exampleModalLabel"
        aria-hidden="true"
   >
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">
-            Modal title
+            Edit Profile
           </h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body">
-          <img src="https://4rfnv3jdfte8qj2229aqgj4h-wpengine.netdna-ssl.com/wp-content/uploads/2019/02/15610552_web1_Cull2-Sealion-20feb19-1024x683.jpg" class="img-fluid" alt="">
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">
-            Close
-          </button>
-          <button type="button" class="btn btn-primary">
-            Save changes
-          </button>
-        </div>
+        <form @submit="editProfile">
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-6">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Name</label>
+                  <input type="text" class="form-control" v-model="profile.name">
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Age</label>
+                  <input type="number" class="form-control" v-model="profile.age">
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Gender</label>
+              <input type="string" class="form-control" v-model="profile.gender">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Zip Code</label>
+              <input type="string" class="form-control" v-model="profile.location">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">About Me</label>
+              <textarea class="form-control" v-model="profile.aboutMe" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Looking For</label>
+              <input type="string" class="form-control" v-model="profile.lookingFor">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Price Range</label>
+              <input type="string" class="form-control" v-model="profile.priceRange">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Interests</label>
+              <input type="string" class="form-control" v-model="profile.interests">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Lifestyle Options</label>
+              <input type="string" class="form-control" v-model="profile.lifestyleOptions">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Anticipated Move In Date</label>
+              <input type="date" class="form-control" v-model="profile.anticipatedMoveInDate">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Image Url</label>
+              <input type="string" class="form-control" v-model="profile.imgUrl">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+              Close
+            </button>
+            <button type="submit" class="btn btn-primary">
+              Save changes
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
@@ -98,6 +149,7 @@
 <script>
 import { computed, reactive } from 'vue'
 import { AppState } from '../AppState'
+import $ from 'jquery'
 export default {
   name: 'Profile',
   setup() {
@@ -105,7 +157,25 @@ export default {
       profile: computed(() => AppState.myProfile)
     })
     return {
-      state
+      state,
+      profile: {
+        name: state.profile.name,
+        age: state.profile.age,
+        gender: state.profile.gender,
+        location: state.profile.location,
+        aboutMe: state.profile.aboutMe,
+        imgUrl: state.profile.imgUrl,
+        lookingFor: state.profile.lookingFor,
+        priceRange: state.profile.priceRange,
+        interests: state.profile.interests,
+        lifestyleOptions: state.profile.lifestyleOptions,
+        anticipatedMoveInDate: state.profile.anticipatedMoveInDate
+      },
+      editProfile() {
+        console.log(this.profile)
+        $('#editModal').modal('toggle')
+      }
+
     }
   }
 }
