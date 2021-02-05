@@ -14,7 +14,7 @@ class RoomService {
   }
 
   async getAll(query) {
-    return await dbContext.Profile.find(query).populate('creator')
+    return await dbContext.Room.find(query).populate('creator')
   }
 
   async getOne(roomId) {
@@ -26,7 +26,9 @@ class RoomService {
   }
 
   async edit(id, title, userId) {
-    const updated = await dbContext.Room.findOneAndDelete({ _id: id, creatorId: userId }, title, { new: true })
+    // TODO had to currently do this due to Jordan issue of "can't get account", we can swap these out when fixed
+    // const updated = await dbContext.Room.findOneAndUpdate({ _id: id, creatorId: userId }, title, { new: true })
+    const updated = await dbContext.Room.findOneAndUpdate({ _id: id }, title, { new: true })
     if (!updated) {
       throw new BadRequest('No Room exists with that ID')
     }

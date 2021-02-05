@@ -43,7 +43,9 @@ export class RoomController extends BaseController {
 
   async edit(req, res, next) {
     try {
-      const data = await roomService.edit(req.params.id, req.body, req.userInfo.id)
+      // TODO had to currently do this due to Jordan issue of "can't get account", we can swap these out when fixed
+      // const data = await roomService.edit(req.params.id, req.body, req.userInfo.id)
+      const data = await roomService.edit(req.params.id, req.body)
       res.send(data)
     } catch (error) {
       next(error)

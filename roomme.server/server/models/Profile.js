@@ -11,13 +11,14 @@ const Profile = new Schema(
     imgURL: { type: String },
     // TODO Make imgURL required? Currently not this way for Postman testing purposes
     lookingFor: { type: String, enum: ['roommate', 'roommate with room'] },
-    priceRange: { type: String, required: true },
+    lowPriceRange: { type: Number, required: true },
+    highPriceRange: { type: Number, required: true },
     interests: { type: String },
     lifestyleOptions: { type: String },
     room: { type: String, ref: 'Room' },
     // NOTE in a many-to-many relationship, only the Match would need the people ID's, so commenting out "match" for now
     // match: { type: String, ref: 'Match' },
-    anticipatedMoveInDate: { type: Date, required: true },
+    anticipatedMoveInDate: { type: Date },
     creatorId: { type: String, required: true }
   },
   { timestamps: true, toJSON: { virtuals: true } }

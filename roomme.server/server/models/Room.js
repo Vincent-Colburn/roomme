@@ -3,7 +3,7 @@ const Schema = mongoose.Schema
 
 const Room = new Schema(
   {
-    user: { type: String, ref: 'Profile', required: true },
+    // user: { type: String, ref: 'Profile', required: true },
     description: { type: String, required: true },
     imgURL: { type: String },
     // TODO Make imgURL required? Currently not this way for Postman testing purposes

@@ -10,7 +10,7 @@ export class ProfileController extends BaseController {
       .post('', this.create)
       .get('/:id', this.getOne)
       .get('', this.getAll)
-      .get('/:id/matches', this.getMatches)
+      // .get('/:id/matches', this.getMatches)
       .put('/:id', this.edit)
       .delete('/:id', this.delete)
   }
@@ -41,14 +41,14 @@ export class ProfileController extends BaseController {
   }
 
   // TODO getMatches function - pretty sure this is not correct, will need to be fixed probably
-  async getMatches(req, res, next) {
-    try {
-      const data = await matchesService.getMatches({ profile: req.params.id })
-      res.send(data)
-    } catch (error) {
-      next(error)
-    }
-  }
+  // async getMatches(req, res, next) {
+  //   try {
+  //     const data = await matchesService.getMatches({ profile: req.params.id })
+  //     res.send(data)
+  //   } catch (error) {
+  //     next(error)
+  //   }
+  // }
 
   async edit(req, res, next) {
     try {

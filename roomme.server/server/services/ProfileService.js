@@ -9,12 +9,12 @@ class ProfileService {
   // .get('/:id/matches', this.getMatches)
   // .put('/:id', this.edit)
   // .delete('/:id', this.delete)
-  async create(query) {
-    return await dbContext.Profile.find(query).populate('creator')
+  async create(body) {
+    return await dbContext.Profile.create(body)
   }
 
   async getOne(profileId) {
-    const profileFound = await dbContext.Profile.findById(profileId).populate('creator', 'name')
+    const profileFound = await dbContext.Profile.findById(profileId).populate('creator')
     if (!profileFound) {
       throw new BadRequest('No Profile exists with that ID')
     }
@@ -33,6 +33,10 @@ class ProfileService {
       throw new BadRequest('No Profile exists with that ID')
     }
     return updated
+  }
+
+  async delete(id, userId) {
+    return await dbContext.Profile.findByIdAndDelete({ _id: id, creatorId: userId })
   }
 }
 
