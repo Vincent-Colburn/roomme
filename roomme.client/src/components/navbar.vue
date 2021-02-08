@@ -4,7 +4,7 @@
       <div class="d-flex flex-column align-items-center">
         <img
           alt="logo"
-          src="../assets/img/cw-logo.png"
+          src="../assets/img/rm-logo.png"
           height="45"
         />
       </div>
@@ -28,8 +28,18 @@
           </router-link>
         </li>
         <li class="nav-item">
-          <router-link :to="{ name: 'About' }" class="nav-link">
-            About
+          <router-link :to="{ name: 'Profile' }" class="nav-link">
+            Profile
+          </router-link>
+        </li>
+        <li class="nav-item">
+          <router-link :to="{ name: 'Search' }" class="nav-link">
+            Search
+          </router-link>
+        </li>
+        <li class="nav-item">
+          <router-link :to="{ name: 'Matches' }" class="nav-link">
+            Matches
           </router-link>
         </li>
       </ul>
