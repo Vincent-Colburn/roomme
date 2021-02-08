@@ -1,5 +1,5 @@
 <template>
-  <div class="profile container-fluid">
+  <div class="profile container-fluid" v-if="state.profile.name">
     <div class="row text-center my-3">
       <div class="col">
         <h1>WELCOME ThE ThUnDer dOMe!</h1>
@@ -35,7 +35,7 @@
         </div>
         <div class="row my-2">
           <div class="col">
-            <h3>Price range: {{ profile.priceRange }}</h3>
+            <h3>Price range: {{ profile.lowPriceRange }} - {{ profile.highPriceRange }}</h3>
           </div>
         </div>
       </div>
@@ -61,6 +61,15 @@
       <div class="col"></div>
     </div>
   </div>
+  <div class="container" v-else>
+    <div class="row text-center">
+      <div class="col">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createProfileModal">
+          Create Profile
+        </button>
+      </div>
+    </div>
+  </div>
   <!-- Modal -->
   <div class="modal fade"
        id="editModal"
@@ -79,57 +88,149 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form @submit="editProfile">
+        <form @submit.prevent="editProfile">
           <div class="modal-body">
             <div class="row">
               <div class="col-6">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Name</label>
-                  <input type="text" class="form-control" v-model="profile.name">
+                  <input type="text" class="form-control" v-model="profile.name" required>
                 </div>
               </div>
               <div class="col-6">
                 <div class="form-group">
                   <label for="exampleInputPassword1">Age</label>
-                  <input type="number" class="form-control" v-model="profile.age">
+                  <input type="number" class="form-control" v-model="profile.age" required>
                 </div>
               </div>
             </div>
             <div class="form-group">
               <label for="exampleInputEmail1">Gender</label>
-              <input type="string" class="form-control" v-model="profile.gender">
+              <input type="string" class="form-control" v-model="profile.gender" required>
             </div>
             <div class="form-group">
               <label for="exampleInputEmail1">Zip Code</label>
-              <input type="string" class="form-control" v-model="profile.location">
+              <input type="string" class="form-control" v-model="profile.location" required>
             </div>
             <div class="form-group">
               <label for="exampleInputEmail1">About Me</label>
-              <textarea class="form-control" v-model="profile.aboutMe" rows="3"></textarea>
+              <textarea class="form-control" v-model="profile.aboutMe" rows="3" required></textarea>
             </div>
             <div class="form-group">
               <label for="exampleInputEmail1">Looking For</label>
-              <input type="string" class="form-control" v-model="profile.lookingFor">
+              <input type="string" class="form-control" v-model="profile.lookingFor" required>
             </div>
             <div class="form-group">
-              <label for="exampleInputEmail1">Price Range</label>
-              <input type="string" class="form-control" v-model="profile.priceRange">
+              <label for="exampleInputEmail1">Price Range Low</label>
+              <input type="string" class="form-control" v-model="profile.lowPriceRange" required>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Price Range High</label>
+              <input type="string" class="form-control" v-model="profile.highPriceRange" required>
             </div>
             <div class="form-group">
               <label for="exampleInputEmail1">Interests</label>
-              <input type="string" class="form-control" v-model="profile.interests">
+              <input type="string" class="form-control" v-model="profile.interests" required>
             </div>
             <div class="form-group">
               <label for="exampleInputEmail1">Lifestyle Options</label>
-              <input type="string" class="form-control" v-model="profile.lifestyleOptions">
+              <input type="string" class="form-control" v-model="profile.lifestyleOptions" required>
             </div>
             <div class="form-group">
               <label for="exampleInputEmail1">Anticipated Move In Date</label>
-              <input type="date" class="form-control" v-model="profile.anticipatedMoveInDate">
+              <input type="date" class="form-control" v-model="profile.anticipatedMoveInDate" required>
             </div>
             <div class="form-group">
               <label for="exampleInputEmail1">Image Url</label>
-              <input type="string" class="form-control" v-model="profile.imgUrl">
+              <input type="string" class="form-control" v-model="profile.imgUrl" required>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+              Close
+            </button>
+            <button type="submit" class="btn btn-primary">
+              Save changes
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade"
+       id="createProfileModal"
+       tabindex="-1"
+       role="dialog"
+       aria-labelledby="exampleModalLabel"
+       aria-hidden="true"
+  >
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+            Create Profile
+          </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form @submit.prevent="createProfile">
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-6">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Name</label>
+                  <input type="text" class="form-control" v-model="newProfile.name" required>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Age</label>
+                  <input type="number" class="form-control" v-model="newProfile.age" required>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Gender</label>
+              <input type="string" class="form-control" v-model="newProfile.gender" required>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Zip Code</label>
+              <input type="string" class="form-control" v-model="newProfile.location" required>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">About Me</label>
+              <textarea class="form-control" v-model="newProfile.aboutMe" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Looking For</label>
+              <input type="string" class="form-control" v-model="newProfile.lookingFor" required>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Price Range Low</label>
+              <input type="string" class="form-control" v-model="newProfile.lowPriceRange" required>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Price Range High</label>
+              <input type="string" class="form-control" v-model="newProfile.highPriceRange" required>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Interests</label>
+              <input type="string" class="form-control" v-model="newProfile.interests" required>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Lifestyle Options</label>
+              <input type="string" class="form-control" v-model="newProfile.lifestyleOptions" required>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Anticipated Move In Date</label>
+              <input type="date" class="form-control" v-model="newProfile.anticipatedMoveInDate" required>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Image Url</label>
+              <input type="string" class="form-control" v-model="newProfile.imgUrl" required>
             </div>
           </div>
           <div class="modal-footer">
@@ -147,14 +248,24 @@
 </template>
 
 <script>
-import { computed, reactive } from 'vue'
+import { computed, reactive, onMounted } from 'vue'
 import { AppState } from '../AppState'
 import $ from 'jquery'
+import { logger } from '../utils/Logger'
+import { profileService } from '../services/ProfileService'
 export default {
   name: 'Profile',
   setup() {
     const state = reactive({
-      profile: computed(() => AppState.myProfile)
+      profile: computed(() => AppState.myProfile),
+      account: computed(() => AppState.account)
+    })
+    onMounted(async() => {
+      try {
+        await profileService.getProfile()
+      } catch (error) {
+        logger.log(error)
+      }
     })
     return {
       state,
@@ -166,14 +277,29 @@ export default {
         aboutMe: state.profile.aboutMe,
         imgUrl: state.profile.imgUrl,
         lookingFor: state.profile.lookingFor,
-        priceRange: state.profile.priceRange,
+        lowPriceRange: state.profile.lowPriceRange,
+        highPriceRange: state.profile.highPriceRange,
         interests: state.profile.interests,
         lifestyleOptions: state.profile.lifestyleOptions,
         anticipatedMoveInDate: state.profile.anticipatedMoveInDate
       },
+      newProfile: {},
       editProfile() {
-        console.log(this.profile)
-        $('#editModal').modal('toggle')
+        try {
+          profileService.editProfile(this.profile)
+          $('#editModal').modal('toggle')
+        } catch (error) {
+          logger.log(error)
+        }
+      },
+      createProfile() {
+        try {
+          profileService.createProfile(this.newProfile)
+          this.newProfile = ''
+          $('#createProfileModal').modal('toggle')
+        } catch (error) {
+          logger.log(error)
+        }
       }
 
     }
