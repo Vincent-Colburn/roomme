@@ -10,32 +10,32 @@
     </div>
     <div class="row">
       <div class="offset-2 col-2">
-        <img :src="profile.imgUrl" class="img-fluid" alt="">
+        <img :src="state.profile.imgURL" class="img-fluid" alt="">
       </div>
       <div class="col water offset-1">
         <div class="row my-2">
           <div class="col">
-            <h3>Name: {{ profile.name }}</h3>
+            <h3>Name: {{ state.profile.name }}</h3>
           </div>
         </div>
         <div class="row my-2">
           <div class="col">
-            <h3>Age: {{ profile.age }}</h3>
+            <h3>Age: {{ state.profile.age }}</h3>
           </div>
         </div>
         <div class="row my-2">
           <div class="col">
-            <h3>Gender: {{ profile.gender }}</h3>
+            <h3>Gender: {{ state.profile.gender }}</h3>
           </div>
         </div>
         <div class="row my-2">
           <div class="col">
-            <h3>Interests: {{ profile.interests }}</h3>
+            <h3>Interests: {{ state.profile.interests }}</h3>
           </div>
         </div>
         <div class="row my-2">
           <div class="col">
-            <h3>Price range: {{ profile.lowPriceRange }} - {{ profile.highPriceRange }}</h3>
+            <h3>Price range: {{ state.profile.lowPriceRange }} - {{ state.profile.highPriceRange }}</h3>
           </div>
         </div>
       </div>
@@ -44,7 +44,7 @@
       <div class="col"></div>
       <div class="col-9">
         <h4>About Me:</h4>
-        <p>{{ profile.aboutMe }}</p>
+        <p>{{ state.profile.aboutMe }}</p>
       </div>
       <div class="col"></div>
     </div>
@@ -55,7 +55,7 @@
           Lifestyle Choices:
         </h4>
         <p>
-          {{ profile.lifestyleOptions }}
+          {{ state.profile.lifestyleOptions }}
         </p>
       </div>
       <div class="col"></div>
@@ -70,7 +70,7 @@
       </div>
     </div>
   </div>
-  <!-- Modal -->
+  <!-- Edit Profile Modal -->
   <div class="modal fade"
        id="editModal"
        tabindex="-1"
@@ -94,55 +94,55 @@
               <div class="col-6">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Name</label>
-                  <input type="text" class="form-control" v-model="profile.name" required>
+                  <input type="text" class="form-control" v-model="profile.name">
                 </div>
               </div>
               <div class="col-6">
                 <div class="form-group">
                   <label for="exampleInputPassword1">Age</label>
-                  <input type="number" class="form-control" v-model="profile.age" required>
+                  <input type="number" class="form-control" v-model="profile.age">
                 </div>
               </div>
             </div>
             <div class="form-group">
               <label for="exampleInputEmail1">Gender</label>
-              <input type="string" class="form-control" v-model="profile.gender" required>
+              <input type="string" class="form-control" v-model="profile.gender">
             </div>
             <div class="form-group">
               <label for="exampleInputEmail1">Zip Code</label>
-              <input type="string" class="form-control" v-model="profile.location" required>
+              <input type="string" class="form-control" v-model="profile.location">
             </div>
             <div class="form-group">
               <label for="exampleInputEmail1">About Me</label>
-              <textarea class="form-control" v-model="profile.aboutMe" rows="3" required></textarea>
+              <textarea class="form-control" v-model="profile.aboutMe" rows="3"></textarea>
             </div>
             <div class="form-group">
               <label for="exampleInputEmail1">Looking For</label>
-              <input type="string" class="form-control" v-model="profile.lookingFor" required>
+              <input type="string" class="form-control" v-model="profile.lookingFor">
             </div>
             <div class="form-group">
               <label for="exampleInputEmail1">Price Range Low</label>
-              <input type="string" class="form-control" v-model="profile.lowPriceRange" required>
+              <input type="string" class="form-control" v-model="profile.lowPriceRange">
             </div>
             <div class="form-group">
               <label for="exampleInputEmail1">Price Range High</label>
-              <input type="string" class="form-control" v-model="profile.highPriceRange" required>
+              <input type="string" class="form-control" v-model="profile.highPriceRange">
             </div>
             <div class="form-group">
               <label for="exampleInputEmail1">Interests</label>
-              <input type="string" class="form-control" v-model="profile.interests" required>
+              <input type="string" class="form-control" v-model="profile.interests">
             </div>
             <div class="form-group">
               <label for="exampleInputEmail1">Lifestyle Options</label>
-              <input type="string" class="form-control" v-model="profile.lifestyleOptions" required>
+              <input type="string" class="form-control" v-model="profile.lifestyleOptions">
             </div>
             <div class="form-group">
               <label for="exampleInputEmail1">Anticipated Move In Date</label>
-              <input type="date" class="form-control" v-model="profile.anticipatedMoveInDate" required>
+              <input type="date" class="form-control" v-model="profile.anticipatedMoveInDate">
             </div>
             <div class="form-group">
               <label for="exampleInputEmail1">Image Url</label>
-              <input type="string" class="form-control" v-model="profile.imgUrl" required>
+              <input type="string" class="form-control" v-model="profile.imgURL">
             </div>
           </div>
           <div class="modal-footer">
@@ -158,7 +158,7 @@
     </div>
   </div>
 
-  <!-- Modal -->
+  <!-- Create Profile Modal -->
   <div class="modal fade"
        id="createProfileModal"
        tabindex="-1"
@@ -230,7 +230,7 @@
             </div>
             <div class="form-group">
               <label for="exampleInputEmail1">Image Url</label>
-              <input type="string" class="form-control" v-model="newProfile.imgUrl" required>
+              <input type="string" class="form-control" v-model="newProfile.imgURL" required>
             </div>
           </div>
           <div class="modal-footer">
@@ -257,8 +257,8 @@ export default {
   name: 'Profile',
   setup() {
     const state = reactive({
-      profile: computed(() => AppState.myProfile),
-      account: computed(() => AppState.account)
+      profile: computed(() => AppState.myProfile)
+      // account: computed(() => AppState.user)
     })
     onMounted(async() => {
       try {
@@ -275,7 +275,7 @@ export default {
         gender: state.profile.gender,
         location: state.profile.location,
         aboutMe: state.profile.aboutMe,
-        imgUrl: state.profile.imgUrl,
+        imgURL: state.profile.imgURL,
         lookingFor: state.profile.lookingFor,
         lowPriceRange: state.profile.lowPriceRange,
         highPriceRange: state.profile.highPriceRange,
@@ -284,19 +284,20 @@ export default {
         anticipatedMoveInDate: state.profile.anticipatedMoveInDate
       },
       newProfile: {},
-      editProfile() {
-        try {
-          profileService.editProfile(this.profile)
-          $('#editModal').modal('toggle')
-        } catch (error) {
-          logger.log(error)
-        }
-      },
       createProfile() {
         try {
           profileService.createProfile(this.newProfile)
           this.newProfile = ''
           $('#createProfileModal').modal('toggle')
+        } catch (error) {
+          logger.log(error)
+        }
+      },
+
+      editProfile() {
+        try {
+          profileService.editProfile(this.profile, state.profile.id)
+          $('#editModal').modal('toggle')
         } catch (error) {
           logger.log(error)
         }

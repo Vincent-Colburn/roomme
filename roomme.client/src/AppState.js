@@ -10,3 +10,6 @@ export const AppState = reactive({
   myProfile: {},
   activeProfile: {}
 })
+
+// Active profile is for the searches page, when you are viewing a single potential match
+// myProfile is for the profile page/user
