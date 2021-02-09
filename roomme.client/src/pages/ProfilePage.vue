@@ -2,7 +2,7 @@
   <div class="profile container-fluid" v-if="state.profile.name">
     <div class="row text-center my-3">
       <div class="col">
-        <h1>WELCOME ThE ThUnDer dOMe!</h1>
+        <h1>Welcome to your Profile Page</h1>
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal">
           Edit Profile
         </button>
@@ -71,6 +71,7 @@
     </div>
   </div>
   <!-- Edit Profile Modal -->
+  <!--    v-if="state.loaded == true" put this in the topmost div -->
   <div class="modal fade"
        id="editModal"
        tabindex="-1"
@@ -258,11 +259,13 @@ export default {
   setup() {
     const state = reactive({
       profile: computed(() => AppState.myProfile)
+      // loaded: false
       // account: computed(() => AppState.user)
     })
     onMounted(async() => {
       try {
         await profileService.getProfile()
+        // state.loaded = true
       } catch (error) {
         logger.log(error)
       }
