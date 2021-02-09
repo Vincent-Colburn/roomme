@@ -5,14 +5,32 @@ export class MatchController extends BaseController {
   constructor() {
     super('api/matches')
     this.router
+      .get('', this.getAll)
       .post('', this.create)
+      .put('', this.edit)
       .delete('/:id', this.delete)
+  }
+
+  async getAll(req, res, next) {
+    try {
+      res.send(await matchService.getAll(req.body))
+    } catch (error) {
+      next(error)
+    }
   }
 
   async create(req, res, next) {
     try {
       const data = await matchService.create(req.body)
-      res.status(201).send(data)
+      res.send(data)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async edit(req, res, next) {
+    try {
+      res.send(await matchService.edit(req.body))
     } catch (error) {
       next(error)
     }

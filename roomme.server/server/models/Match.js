@@ -7,7 +7,7 @@ const Match = new Schema(
     toUserId: { type: ObjectId, ref: 'Profile', required: true },
     fromUserId: { type: ObjectId, ref: 'Profile', required: true },
     matched: { type: Boolean, required: true, default: false },
-    status: { type: String, enum: ['pending', 'withdrawn', 'accepted'] }
+    status: { type: String, enum: ['pending', 'declined', 'accepted'], default: 'pending' }
     // NOTE messages below is a stretch goal, will need to be altered if we reach this point as it does not like "fromUserId"
     // messages: [{ from: fromUserId, body: String }]
   }
