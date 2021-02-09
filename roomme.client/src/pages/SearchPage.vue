@@ -1,9 +1,13 @@
 <template>
   <div class="container-fluid border">
     <div class="row">
-      <h1 class="text-center">
-        RoomMe Machine
-      </h1>
+      <div class="col">
+        <h1 class="text-center">
+          RoomMe Machine
+        </h1>
+      </div>
+    </div>
+    <div class="row justify-content-center">
       <div id="carouselExampleControls" class="carousel slide" data-ride="false" data-interval="false">
         <div class="carousel-inner">
           <div class="carousel-item active">
@@ -16,16 +20,16 @@
           <PotentialMatchesComponent v-for="profile in state.profiles" :key="profile.id" :profile-props="profile" />
         </div>
       </div>
-      <!-- <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="next" @click="matchDislike()">
+    </div>
+  </div>
+  <!-- <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="next" @click="matchDislike()">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="sr-only">Previous</span>
       </a>
       <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next" @click="matchLike()">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="sr-only">Next</span> -->
-      <!-- </a> -->
-    </div>
-  </div>
+  <!-- </a> -->
 
   <!-- <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
