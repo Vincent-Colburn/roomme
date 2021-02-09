@@ -5,16 +5,16 @@ export class MatchController extends BaseController {
   constructor() {
     super('api/matches')
     this.router
-      .get('', this.getAll)
+      .get('', this.getMyMatches)
       .post('', this.create)
       .put('', this.edit)
       .delete('/:id', this.delete)
       .delete('', this.deleteAll)
   }
 
-  async getAll(req, res, next) {
+  async getMyMatches(req, res, next) {
     try {
-      res.send(await matchService.getAll(req.body))
+      res.send(await matchService.getMyMatches(req.body))
     } catch (error) {
       next(error)
     }
@@ -22,7 +22,7 @@ export class MatchController extends BaseController {
 
   async create(req, res, next) {
     try {
-      const data = await matchService.create(req.body)
+      const data = await matchService.match(req.body)
       res.send(data)
     } catch (error) {
       next(error)
