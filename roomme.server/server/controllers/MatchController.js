@@ -9,6 +9,7 @@ export class MatchController extends BaseController {
       .post('', this.create)
       .put('', this.edit)
       .delete('/:id', this.delete)
+      .delete('', this.deleteAll)
   }
 
   async getAll(req, res, next) {
@@ -40,6 +41,15 @@ export class MatchController extends BaseController {
     try {
       await matchService.delete(req.params.id)
       res.send('deleted')
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async deleteAll(req, res, next) {
+    try {
+      await matchService.deleteAll()
+      res.send('deleted all')
     } catch (error) {
       next(error)
     }

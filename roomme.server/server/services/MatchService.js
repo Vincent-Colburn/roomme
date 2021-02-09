@@ -24,6 +24,13 @@ class MatchService {
       throw new BadRequest('invalid id')
     }
   }
+
+  async deleteAll() {
+    const deleted = await dbContext.Match.deleteMany()
+    if (!deleted) {
+      throw new BadRequest('nope')
+    }
+  }
 }
 
 export const matchService = new MatchService()

@@ -14,7 +14,6 @@
             <h1 class="text-center py-5">
               slide to begin
             </h1>
-            <i class="carousel-control-next  btn fa fa-thumbs-down text-danger text-left" role="button" href="#carouselExampleControls" aria-hidden="true" data-slide="next"></i>
             <i class="carousel-control-next btn fa fa-thumbs-up text-success text-right" role="button" href="#carouselExampleControls" aria-hidden="true" data-slide="next"></i>
           </div>
           <PotentialMatchesComponent v-for="profile in state.profiles" :key="profile.id" :profile-props="profile" />
