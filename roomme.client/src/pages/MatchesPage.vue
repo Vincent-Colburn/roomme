@@ -18,7 +18,8 @@ export default {
   setup() {
     const state = reactive({
       matches: computed(() => AppState.matches),
-      myProfile: computed(() => AppState.myProfile)
+      myProfile: computed(() => AppState.myProfile),
+      account: computed(() => AppState.account)
     })
     onMounted(() => {
       try {

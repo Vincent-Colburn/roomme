@@ -9,28 +9,20 @@ const Account = new Schema(
     name: { type: String, required: true },
     picture: { type: String },
     // NOTE If you wish to add additional public properties for Accounts do so here
-    age: { type: Number, required: true },
-    gender: { type: String, required: true },
-    location: { type: Number, required: true },
-    aboutMe: { type: String, required: true },
+    age: { type: Number },
+    gender: { type: String },
+    location: { type: Number },
+    aboutMe: { type: String },
     imgURL: { type: String },
     lookingFor: { type: String, enum: ['roommate', 'roommate with room'] },
-    lowPriceRange: { type: Number, required: true },
-    highPriceRange: { type: Number, required: true },
+    lowPriceRange: { type: Number },
+    highPriceRange: { type: Number },
     interests: { type: String },
     lifestyleOptions: { type: String },
     room: { type: String, ref: 'Room' },
-    anticipatedMoveInDate: { type: Date },
-    creatorId: { type: String, required: true }
+    anticipatedMoveInDate: { type: Date }
   },
   { timestamps: true, _id: false, toJSON: { virtuals: true } }
 )
-
-Account.virtual('creator', {
-  localField: 'creatorId',
-  ref: 'Account',
-  foreignField: '_id',
-  justOne: true
-})
 
 export default Account

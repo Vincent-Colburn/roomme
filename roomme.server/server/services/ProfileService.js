@@ -10,25 +10,26 @@ class ProfileService {
   // .put('/:id', this.edit)
   // .delete('/:id', this.delete)
   async create(body) {
-    return await dbContext.Profile.create(body)
+    return await dbContext.Account.create(body)
   }
 
   async getOne(profileId) {
-    const profileFound = await dbContext.Profile.findById(profileId).populate('creator')
+    // should this be a findOne
+    const profileFound = await dbContext.Account.findById(profileId).populate('age, name, gender, location, aboutMe, imgURL, lookingFor, lowPriceRange, highPriceRange, interests, lifestyleOptions, room, anticipatedMoveInDate')
     if (!profileFound) {
       throw new BadRequest('No Profile exists with that ID')
     }
     return profileFound
   }
 
-  async getAll(query) {
-    return await dbContext.Profile.find(query).populate('creator')
+  async getAll() {
+    return await dbContext.Account.find().populate('age, name, gender, location, aboutMe, imgURL, lookingFor, lowPriceRange, highPriceRange, interests, lifestyleOptions, room, anticipatedMoveInDate')
   }
 
   // NOTE With a many to many relationship, will a get"" function go here??
 
   async edit(id, title, userId) {
-    const updated = await dbContext.Profile.findOneAndUpdate({ _id: id, creatorId: userId }, title, { new: true })
+    const updated = await dbContext.Account.findOneAndUpdate({ _id: id, creatorId: userId }, title, { new: true })
     if (!updated) {
       throw new BadRequest('No Profile exists with that ID')
     }
@@ -36,7 +37,7 @@ class ProfileService {
   }
 
   async delete(id, userId) {
-    return await dbContext.Profile.findByIdAndDelete({ _id: id, creatorId: userId })
+    return await dbContext.Account.findByIdAndDelete({ _id: id, creatorId: userId })
   }
 }
 

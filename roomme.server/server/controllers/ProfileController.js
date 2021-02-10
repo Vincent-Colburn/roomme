@@ -35,7 +35,7 @@ export class ProfileController extends BaseController {
 
   async getAll(req, res, next) {
     try {
-      return res.send(await profileService.getAll(req.query))
+      return res.send(await profileService.getAll())
     } catch (error) {
       next(error)
     }

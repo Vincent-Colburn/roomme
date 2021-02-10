@@ -177,7 +177,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form @submit.prevent="createProfile">
+        <form @submit.prevent="editProfile">
           <div class="modal-body">
             <div class="row">
               <div class="col-6">
@@ -249,7 +249,7 @@
 </template>
 
 <script>
-import { computed, reactive, onMounted } from 'vue'
+import { computed, reactive } from 'vue'
 import { AppState } from '../AppState'
 import $ from 'jquery'
 import { logger } from '../utils/Logger'
@@ -258,18 +258,18 @@ export default {
   name: 'Profile',
   setup() {
     const state = reactive({
-      profile: computed(() => AppState.myProfile)
+      profile: computed(() => AppState.account)
       // loaded: false
       // account: computed(() => AppState.user)
     })
-    onMounted(async() => {
-      try {
-        await profileService.getProfile()
-        // state.loaded = true
-      } catch (error) {
-        logger.log(error)
-      }
-    })
+    // onMounted(async() => {
+    //   try {
+    //     await profileService.getProfile()
+    //     // state.loaded = true
+    //   } catch (error) {
+    //     logger.log(error)
+    //   }
+    // })
     return {
       state,
       profile: {
@@ -299,7 +299,7 @@ export default {
 
       editProfile() {
         try {
-          profileService.editProfile(this.profile, state.profile.id)
+          profileService.editProfile(this.profile)
           $('#editModal').modal('toggle')
         } catch (error) {
           logger.log(error)
