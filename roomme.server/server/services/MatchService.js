@@ -4,7 +4,7 @@ import { BadRequest } from '../utils/Errors'
 
 class MatchService {
   async getMyMatches(id) {
-    const matches = await dbContext.Match.find({ $or: [{ fromUserId: id, matched: true }, { toUserId: id, matched: true }] })
+    const matches = await dbContext.Match.find({ $or: [{ fromUserId: id, matched: true }, { toUserId: id, matched: true }] }).populate('toUserId, fromUserId', 'name')
 
     return matches
   }

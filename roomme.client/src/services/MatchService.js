@@ -1,5 +1,6 @@
 // import { api } from './AxiosService'
 
+import { AppState } from '../AppState'
 import { api } from './AxiosService'
 
 class MatchService {
@@ -45,6 +46,8 @@ class MatchService {
   async getMatches() {
     const res = await api.get('api/matches')
     console.log('these are your matches', res.data)
+    AppState.matches = res.data
+    // console.log('this is the appstate matches', AppState.matches)
   }
 }
 

@@ -1,9 +1,8 @@
 <template>
   <div class="container-fluid">
     <div class="row">
-      <div class="col-3">
-        <MatchDetailsPage />
-      </div>
+      <MatchDetailsComponent v-for="match in matches" :key="match.id" :match-props="match" />
+      <h1> </h1>
     </div>
   </div>
 </template>
@@ -17,7 +16,6 @@ export default {
   name: 'MatchesPage',
   setup() {
     const state = reactive({
-      matches: computed(() => AppState.matches),
       account: computed(() => AppState.account)
     })
     onMounted(async() => {
@@ -27,7 +25,10 @@ export default {
         logger(error)
       }
     })
-    return state
+    return {
+      state,
+      matches: computed(() => AppState.matches)
+    }
   }
 }
 </script>
