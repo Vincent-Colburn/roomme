@@ -1,9 +1,14 @@
 import { dbContext } from '../db/DbContext'
 import { BadRequest } from '../utils/Errors'
+// import { myProfileService } from './MyProfileService'
 
 class MatchService {
-  async getMyMatches(query) {
-    return await dbContext.Match.find(query)
+  async getMyMatches() {
+    // const profile = myProfileService.getOne(userId)
+    // const query = {
+    //   matched: true
+    // }
+    return await dbContext.Match.find({ matched: true })
   }
 
   async match(body) {

@@ -14,7 +14,7 @@ export class MatchController extends BaseController {
 
   async getMyMatches(req, res, next) {
     try {
-      res.send(await matchService.getMyMatches(req.body))
+      res.send(await matchService.getMyMatches())
     } catch (error) {
       next(error)
     }

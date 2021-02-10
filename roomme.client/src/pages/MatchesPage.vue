@@ -1,9 +1,32 @@
 <template>
-  <h1>Here will lie the matches</h1>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-3">
+        <MatchDetailsPage />
+      </div>
+    </div>
+  </div>
 </template>
 <script>
+import { computed, onMounted, reactive } from 'vue'
+import { matchService } from '../services/MatchService'
+import { logger } from '../utils/Logger'
+import { AppState } from '../AppState'
 export default {
-  name: 'MatchesPage'
+  name: 'MatchesPage',
+  setup() {
+    const state = reactive({
+      matches: computed(() => AppState.matches)
+    })
+    onMounted(async() => {
+      try {
+        await matchService.getMatches()
+      } catch (error) {
+        logger.log(error)
+      }
+    })
+    return state
+  }
 }
 </script>
 <style lang="scss" scoped>

@@ -41,6 +41,11 @@ class MatchService {
   //   const fromUserId = profileId
   //   const status = pending
   }
+
+  async getMatches() {
+    const res = await api.get('api/matches')
+    console.log(res.data)
+  }
 }
 
 export const matchService = new MatchService()
