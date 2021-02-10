@@ -4,15 +4,9 @@ import { BadRequest } from '../utils/Errors'
 
 class MatchService {
   async getMyMatches(id) {
-    // const profile = myProfileService.getOne(userId)
-    // const query = {
-    //   matched: true
-    // }
-    //  This is working await dbContext.Match.find({ matched: true })
-    // const toUser = await dbContext.Match.find({ toUserId: id, matched: true })
-    const fromUser = await dbContext.Match.find({ fromUserId: id, matched: true })
+    const matches = await dbContext.Match.find({ $or: [{ fromUserId: id, matched: true }, { toUserId: id, matched: true }] })
 
-    return fromUser
+    return matches
   }
 
   async match(body) {

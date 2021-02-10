@@ -42,8 +42,8 @@ class MatchService {
   //   const status = pending
   }
 
-  async getMatches(id) {
-    const res = await api.get('api/matches', { myId: id })
+  async getMatches() {
+    const res = await api.get('api/matches')
     console.log('these are your matches', res.data)
   }
 }
