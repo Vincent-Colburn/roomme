@@ -16,15 +16,15 @@ class MatchService {
   }
 
   async match(body) {
-    const exist = await dbContext.Match.findOne({ toUserId: body.toUserId, fromUserId: body.fromUserId })
+    const exist = await dbContext.Match.findOne({ toUserId: body.userId, fromUserId: body.toUserId })
     if (exist) {
-      const updated = await dbContext.Match.findOneAndUpdate({ toUserId: body.toUserId, fromUserId: body.fromUserId }, { matched: true, status: 'accepted' }, { new: true })
+      const updated = await dbContext.Match.findOneAndUpdate({ toUserId: body.userId, fromUserId: body.toUserId }, { matched: true, status: 'accepted' }, { new: true })
       if (!updated) {
         throw new BadRequest('Could not update')
       }
       return updated
     } else {
-      return await dbContext.Match.create({ toUserId: body.fromUserId, fromUserId: body.toUserId })
+      return await dbContext.Match.create({ toUserId: body.toUserId, fromUserId: body.userId })
     }
   }
 

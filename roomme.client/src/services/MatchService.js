@@ -3,8 +3,8 @@
 import { api } from './AxiosService'
 
 class MatchService {
-  async like(profileId, matchId) {
-    const res = await api.post('api/matches', { toUserId: profileId, fromUserId: matchId })
+  async like(matchId) {
+    const res = await api.post('api/matches', { toUserId: matchId })
     console.log(res.data)
     return res.data
 

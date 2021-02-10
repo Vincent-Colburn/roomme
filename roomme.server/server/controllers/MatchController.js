@@ -23,6 +23,7 @@ export class MatchController extends BaseController {
 
   async create(req, res, next) {
     try {
+      req.body.userId = req.userInfo.id
       const data = await matchService.match(req.body)
       res.send(data)
     } catch (error) {

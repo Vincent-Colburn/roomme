@@ -102,7 +102,7 @@ export default {
       },
 
       matchLike() {
-        matchService.like(state.myProfile.id, props.profileProps.id)
+        matchService.like(props.profileProps.id)
       }
     }
   }

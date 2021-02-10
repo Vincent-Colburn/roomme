@@ -1,11 +1,11 @@
 import mongoose from 'mongoose'
 const Schema = mongoose.Schema
-const ObjectId = mongoose.Schema.Types.ObjectId
+// const ObjectId = mongoose.Schema.Types.ObjectId
 
 const Match = new Schema(
   {
-    toUserId: { type: ObjectId, ref: 'Profile', required: true },
-    fromUserId: { type: ObjectId, ref: 'Profile', required: true },
+    toUserId: { type: String, ref: 'Profile', required: true },
+    fromUserId: { type: String, ref: 'Profile', required: true },
     matched: { type: Boolean, required: true, default: false },
     status: { type: String, enum: ['pending', 'declined', 'accepted'], default: 'pending' }
     // NOTE messages below is a stretch goal, will need to be altered if we reach this point as it does not like "fromUserId"
