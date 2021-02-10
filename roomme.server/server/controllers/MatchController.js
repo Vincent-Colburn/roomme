@@ -1,10 +1,11 @@
 import { matchService } from '../services/MatchService'
 import BaseController from '../utils/BaseController'
-
+import { Auth0Provider } from '@bcwdev/auth0provider'
 export class MatchController extends BaseController {
   constructor() {
     super('api/matches')
     this.router
+      .use(Auth0Provider.getAuthorizedUserInfo)
       .get('', this.getMyMatches)
       .post('', this.create)
       .put('', this.edit)
@@ -14,7 +15,7 @@ export class MatchController extends BaseController {
 
   async getMyMatches(req, res, next) {
     try {
-      res.send(await matchService.getMyMatches())
+      res.send(await matchService.getMyMatches(req.userInfo.id))
     } catch (error) {
       next(error)
     }

@@ -3,12 +3,16 @@ import { BadRequest } from '../utils/Errors'
 // import { myProfileService } from './MyProfileService'
 
 class MatchService {
-  async getMyMatches() {
+  async getMyMatches(id) {
     // const profile = myProfileService.getOne(userId)
     // const query = {
     //   matched: true
     // }
-    return await dbContext.Match.find({ matched: true })
+    //  This is working await dbContext.Match.find({ matched: true })
+    // const toUser = await dbContext.Match.find({ toUserId: id, matched: true })
+    const fromUser = await dbContext.Match.find({ fromUserId: id, matched: true })
+
+    return fromUser
   }
 
   async match(body) {

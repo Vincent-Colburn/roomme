@@ -24,6 +24,7 @@ export class ProfileController extends BaseController {
     }
   }
 
+  // Set another rule for the getOne. if you are the logged in user and you are tyring to get your profile return EVERYTHINg, otherwise return "public data"
   async getOne(req, res, next) {
     try {
       res.send(await profileService.getOne(req.params.id))
