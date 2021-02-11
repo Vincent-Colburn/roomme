@@ -3,7 +3,7 @@ import { BadRequest } from '../utils/Errors'
 
 class MyProfileService {
   async getOne(id) {
-    const profileFound = await dbContext.Profile.findOne({ creatorId: id })
+    const profileFound = await dbContext.Match.findOne({ creatorId: id })
     if (!profileFound) {
       throw new BadRequest('No profile exists with that ID')
     }

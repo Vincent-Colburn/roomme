@@ -16,7 +16,7 @@
             </h1>
             <i class="carousel-control-next btn fa fa-thumbs-up text-success text-right" role="button" href="#carouselExampleControls" aria-hidden="true" data-slide="next"></i>
           </div>
-          <PotentialMatchesComponent v-for="profile in state.profiles" :key="profile.id" :profile-props="profile" />
+          <PotentialMatchesComponent v-for="profile in profiles" :key="profile.id" :profile-props="profile" />
         </div>
       </div>
     </div>
@@ -60,10 +60,9 @@ import { logger } from '../utils/Logger'
 import { AppState } from '../AppState'
 export default {
   name: 'SearchPage',
-  setup(props) {
+  setup() {
     const state = reactive({
-      account: computed(() => AppState.account),
-      profiles: computed(() => AppState.profiles)
+      account: computed(() => AppState.account)
     })
     onMounted(async() => {
       try {
@@ -79,7 +78,8 @@ export default {
       }
     })
     return {
-      state
+      state,
+      profiles: computed(() => AppState.profiles.filter(p => p.id !== state.account.id))
     }
   }
 }

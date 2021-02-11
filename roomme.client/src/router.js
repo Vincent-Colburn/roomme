@@ -18,6 +18,12 @@ const routes = [
     beforeEnter: authGuard
   },
   {
+    path: '/profile/:id',
+    name: 'MatchProfile',
+    component: loadPage('MatchProfilePage'),
+    beforeEnter: authGuard
+  },
+  {
     path: '/matches',
     name: 'Matches',
     component: loadPage('MatchesPage'),

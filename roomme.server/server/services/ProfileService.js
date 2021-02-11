@@ -15,7 +15,7 @@ class ProfileService {
 
   async getOne(profileId) {
     // should this be a findOne
-    const profileFound = await dbContext.Account.findById(profileId).populate('age, name, gender, location, aboutMe, imgURL, lookingFor, lowPriceRange, highPriceRange, interests, lifestyleOptions, room, anticipatedMoveInDate')
+    const profileFound = await dbContext.Account.findById(profileId).select(['-email', '-subs'])
     if (!profileFound) {
       throw new BadRequest('No Profile exists with that ID')
     }
