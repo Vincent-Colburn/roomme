@@ -58,7 +58,7 @@ export default {
 
 <style scoped lang="scss">
 .home{
-  height: 50%;
+  height: 23%;
 }
 .primary{
   color: #2f81d3;
@@ -95,6 +95,7 @@ export default {
 .container-fluid {
   background-image: url("https://images.unsplash.com/photo-1497366412874-3415097a27e7?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80");
   background-size: cover;
+  min-height: 100vh;
   // background-color: #FFFAFA;
   // background-color: #edf7F6
 }
