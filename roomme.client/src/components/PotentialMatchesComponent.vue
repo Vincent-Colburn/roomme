@@ -1,5 +1,5 @@
 <template>
-  <div :id="profileProps.name" class="demo__card bg-primary">
+  <div :id="profileProps.id" class="demo__card bg-primary">
     <div>
       <img class="demo__card__top img-fluid" :src="profileProps.imgURL">
       <p class="demo__card__name">
@@ -92,11 +92,7 @@
 </template>
 
 <script>
-import { computed, reactive } from 'vue'
-// import $ from 'jquery'
-import { AppState } from '../AppState'
-import { profileService } from '../services/ProfileService'
-import { matchService } from '../services/MatchService'
+
 // $('.carousel').carousel({
 //   interval: false,
 //   wrap: false
@@ -105,22 +101,6 @@ export default {
   name: 'PotentialMatchesComponent',
   props: {
     profileProps: { type: Object, required: true }
-  },
-  setup(props) {
-    const state = reactive({
-      account: computed(() => AppState.account),
-      myProfile: computed(() => AppState.myProfile)
-    })
-    return {
-      state,
-      matchDislike() {
-        profileService.dislike(state.myProfile.id, props.profileProps.id)
-      },
-
-      matchLike() {
-        matchService.like(props.profileProps.id)
-      }
-    }
   }
 }
 

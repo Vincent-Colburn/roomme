@@ -1,5 +1,4 @@
 <template>
-  <h1>{{ state.profiles.length }}</h1>
   <div class="container demo">
     <div class="row demo__content">
       <div class="demo__card-cont">
@@ -45,6 +44,7 @@ import { logger } from '../utils/Logger'
 import { AppState } from '../AppState'
 // import swipedetect from '../utils/SwipeHandler'
 import $ from 'jquery'
+import { matchService } from '../services/MatchService'
 export default {
   name: 'SearchPage',
   setup() {
@@ -74,6 +74,11 @@ export default {
           $card.addClass('to-right')
           console.log('liked')
           console.log('is this what i want', $card[0].id)
+          try {
+            matchService.like($card[0].id)
+          } catch (error) {
+            logger.log(error)
+          }
         } else if (pullDeltaX <= -decisionVal) {
           $card.addClass('to-left')
           console.log('disliked')
@@ -150,9 +155,13 @@ export default {
     })
     return {
       state,
-      onSwipeLeft() {
-        console.log('swiping left')
+      matchLike(matchId) {
+        console.log('passed to method', matchId)
+        // matchService.like(matchId)
       }
+      // onSwipeLeft() {
+      //   console.log('swiping left')
+      // }
 
     }
   }
