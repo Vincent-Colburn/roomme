@@ -1,5 +1,5 @@
 <template>
-  <div class="carousel-item">
+  <div :id="profileProps.id" class="carousel-item">
     <div class="row">
       <div class="col mx-5 py-5">
         <i class="carousel-control-next  btn fa fa-thumbs-down text-danger text-left"

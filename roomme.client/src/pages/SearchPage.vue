@@ -5,14 +5,17 @@
         <h1 class="text-center">
           RoomMe Machine
         </h1>
+        <div id="swipeMe">
+          Swipe Me!
+        </div>
       </div>
     </div>
     <div class="row justify-content-center">
-      <div id="carouselExampleControls" class="carousel slide" data-ride="false" data-interval="false">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
+      <div id="carouselExampleControls" class="carousel slide" data-ride="false" data-touch="true" data-interval="false">
+        <div id="carousel" class="carousel-inner">
+          <div id="12345" class="carousel-item active">
             <h1 class="text-center py-5">
-              slide to begin
+              <img class="d-block w-100" src="" alt="Slide to begin">
             </h1>
             <i class="carousel-control-next btn fa fa-thumbs-up text-success text-right" role="button" href="#carouselExampleControls" aria-hidden="true" data-slide="next"></i>
           </div>
@@ -21,36 +24,6 @@
       </div>
     </div>
   </div>
-  <!-- <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="next" @click="matchDislike()">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next" @click="matchLike()">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span> -->
-  <!-- </a> -->
-
-  <!-- <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img class="d-block w-100" src="..." alt="First slide">
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="..." alt="Second slide">
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="..." alt="Third slide">
-    </div>
-  </div>
-  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div> -->
 </template>
 
 <script>
@@ -58,6 +31,7 @@ import { computed, onMounted, reactive } from 'vue'
 import { profileService } from '../services/ProfileService'
 import { logger } from '../utils/Logger'
 import { AppState } from '../AppState'
+import swipedetect from '../utils/SwipeHandler'
 export default {
   name: 'SearchPage',
   setup() {
@@ -66,7 +40,7 @@ export default {
     })
     onMounted(async() => {
       try {
-        console.log('teehee')
+        // console.log('teehee')
         await profileService.getProfiles()
       } catch (error) {
         logger.log(error)
@@ -76,11 +50,20 @@ export default {
       } catch (error) {
         logger.log(error)
       }
+      swipedetect(document.getElementById('carousel'), dir => {
+        console.log(dir, 'swiping')
+        console.log(document.getElementsByClassName('carousel-item active')[0].id)
+      })
     })
     return {
       state,
-      profiles: computed(() => AppState.profiles.filter(p => p.id !== state.account.id))
+      profiles: computed(() => AppState.profiles.filter(p => p.id !== state.account.id)),
+      onSwipeLeft() {
+        console.log('swiping left')
+      }
     }
   }
 }
 </script>
+<style lang="scss" scoped>
+</style>
