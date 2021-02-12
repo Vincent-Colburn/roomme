@@ -6,9 +6,19 @@
         {{ profileProps.name }}
       </p>
     </div>
-    <div class="demo__card__btm">
+    <div class="demo__card__btm bg-light position-absolute all-0 d-flex flex-column w-100 h-100" style="overflow-y:scroll" id="msgWrap">
+      <span> <b>Age: </b> {{ profileProps.age }} | <b>  Gender: </b> {{ profileProps.gender }} | <b>Monthly Budget: </b> {{ profileProps.lowPriceRange }} - {{ profileProps.highPriceRange }} </span>
       <p>
-        {{ profileProps.aboutMe }}
+        <b>About Me: </b>
+        <span>
+          {{ profileProps.aboutMe }}
+        </span>
+      </p>
+      <p>
+        <b>Interests: </b>
+        <span>
+          {{ profileProps.interests }}
+        </span>
       </p>
     </div>
     <div class="demo__card__choice m--reject"></div>
@@ -92,7 +102,7 @@
 </template>
 
 <script>
-
+// import $ from 'jquery'
 // $('.carousel').carousel({
 //   interval: false,
 //   wrap: false
@@ -104,6 +114,19 @@ export default {
   }
 }
 
+// $(document).ready(function() {
+//   // Fill the message and friend containers.
+
+//   for (let i = 0; i < 30; i++) {
+//     $('#msgWrap').append(`<div class="demo__card__btm position-absolute all-0 d-flex flex-column w-100 h-100" style="overflow-y:scroll" id="msgWrap">
+//       <p>
+//         + i +
+//       </p>
+//     </div>`)
+
+//     // $('#msgWrap').append("<div class='text-primary'>Message " + i + '</div>')
+//   }
+// })
 // $(document).ready(function() {
 //   // Carousel
 
@@ -273,10 +296,18 @@ $green: #B1DA96;
       font-weight: bold;
       color: #fff;
     }
-
     &__btm {
       height: $cardBtmH;
       background: #FFFFFF;
+      display: block;
+      width: auto;
+      height: auto;
+      max-height: 450px;
+      background-image: url("../assets/img/rm-logo2.png");
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+
     }
 
     &__we {

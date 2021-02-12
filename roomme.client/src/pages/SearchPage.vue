@@ -6,8 +6,6 @@
       </div>
     </div>
     <div class="demo__tip">
-      <p>Swipe left to dislike</p>
-      <p>Swipe right to like</p>
     </div>
   </div>
   <!-- <div class="container-fluid border">
@@ -182,11 +180,11 @@ body {
   background: #63BDF7;
   overflow: hidden;
 }
-
+// 30.6rem
 $w: 30.6rem;
 $h: 54rem;
 $headerH: 6rem;
-$cardW: 24rem;
+$cardW: 28rem;
 $cardH: 32rem;
 $cardTopH: 20.5rem;
 $cardBtmH: $cardH - $cardTopH;
@@ -219,10 +217,10 @@ $green: #B1DA96;
   }
 
   &__content {
-    overflow: hidden;
+    // overflow: hidden;
     position: relative;
     height: $h - $headerH;
-    padding-top: 4.5rem;
+    padding-top: 1rem;
     user-select: none;
   }
 
