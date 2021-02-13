@@ -49,7 +49,7 @@ export default {
     $(document).ready(function() {
       let animating = false
       let cardsCounter = 0
-      const numOfCards = 7
+      const numOfCards = 100
       const decisionVal = 80
       let pullDeltaX = 0
       let deg = 0

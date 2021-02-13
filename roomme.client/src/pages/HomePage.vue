@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="row text-center my-5">
       <div class="col">
-        <h1><i class="fas fa-people-arrows"></i> <span class="primary">Room</span><span class="tertiary">&middot;</span><span class="secondary">Me</span></h1>
+        <h1><i class="fas fa-people-arrows text-primary"></i> <span class="primary">Room</span><span class="tertiary">&middot;</span><span class="secondary">Me</span></h1>
       </div>
     </div>
     <div class="row text-center">

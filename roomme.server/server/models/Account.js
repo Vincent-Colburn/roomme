@@ -20,7 +20,7 @@ const Account = new Schema(
     interests: { type: String },
     lifestyleOptions: { type: String },
     room: { type: String, ref: 'Room' },
-    anticipatedMoveInDate: { type: Date }
+    anticipatedMoveInDate: { type: String }
   },
   { timestamps: true, _id: false, toJSON: { virtuals: true } }
 )
