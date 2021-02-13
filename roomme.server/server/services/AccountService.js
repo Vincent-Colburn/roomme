@@ -1,4 +1,5 @@
 import { dbContext } from '../db/DbContext'
+import { BadRequest } from '../utils/Errors'
 
 // Private Methods
 
@@ -46,9 +47,9 @@ function sanitizeBody(body) {
 }
 
 class AccountService {
-   /**
+  /**
     * Returns a list user profiles from a query search of name or email likeness
-    * limits to first 20 without offset 
+    * limits to first 20 without offset
     * @param {string} str
    */
   async findProfiles(str = '') {
@@ -106,5 +107,35 @@ class AccountService {
     )
     return account
   }
+
+  // async create(body) {
+  //   return await dbContext.Account.create(body)
+  // }
+
+  // async getOne(profileId) {
+  //   const profileFound = await dbContext.Account.findById(profileId).populate('creator')
+  //   if (!profileFound) {
+  //     throw new BadRequest('No Profile exists with that ID')
+  //   }
+  //   return profileFound
+  // }
+
+  // async getAll(query) {
+  //   return await dbContext.Account.find(query).populate('creator')
+  // }
+
+  // // NOTE With a many to many relationship, will a get"" function go here??
+
+  async edit(body, userId) {
+    const updated = await dbContext.Account.findOneAndUpdate({ _id: userId }, body, { new: true })
+    if (!updated) {
+      throw new BadRequest('No Profile exists with that ID')
+    }
+    return updated
+  }
+
+  // async delete(id, userId) {
+  //   return await dbContext.Account.findByIdAndDelete({ _id: id, creatorId: userId })
+  // }
 }
 export const accountService = new AccountService()
