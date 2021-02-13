@@ -3,11 +3,7 @@
     <Navbar />
   </header>
   <main>
-    <router-view v-slot="{Component}">
-      <transition name="route" mode="out-in">
-        <component :is="Component" />
-      </transition>
-    </router-view>
+    <router-view />
   </main>
   <footer>
     <!-- <div class="bg-dark text-light text-center p-4">
