@@ -7,7 +7,7 @@
       </p>
     </div>
     <div class="demo__card__btm bg-light position-absolute all-0 d-flex flex-column w-100 h-100" style="overflow-y:scroll" id="msgWrap">
-      <span> <b>Age: </b> {{ profileProps.age }} | <b>  Gender: </b> {{ profileProps.gender }} | <b>Monthly Budget: </b> {{ profileProps.lowPriceRange }} - {{ profileProps.highPriceRange }} </span>
+      <span class="text-center"> <b>Age: </b> {{ profileProps.age }} | <b>  Gender: </b> {{ profileProps.gender }} | <b>Monthly Budget: </b> {{ profileProps.lowPriceRange }} - {{ profileProps.highPriceRange }} </span>
       <p>
         <b>About Me: </b>
         <span>
@@ -258,7 +258,9 @@ $green: #B1DA96;
     &__top {
       height: $cardTopH;
       padding-top: 4rem;
-
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
       &.purple {
         background: $purple;
       }
@@ -295,6 +297,11 @@ $green: #B1DA96;
       font-size: 2rem;
       font-weight: bold;
       color: #fff;
+    text-shadow: 0 1px 0 #999999, 0 2px 0 #888888,
+             0 3px 0 #777777, 0 4px 0 #666666,
+             0 5px 0 #555555, 0 6px 0 #444444,
+             0 7px 0 #333333, 0 8px 7px rgba(0, 0, 0, 0.4),
+             0 9px 10px rgba(0, 0, 0, 0.2);
     }
     &__btm {
       height: $cardBtmH;
@@ -303,8 +310,8 @@ $green: #B1DA96;
       width: auto;
       height: auto;
       max-height: 450px;
-      background-image: url("../assets/img/rm-logo2.png");
-      background-size: contain;
+      background-image: url("../assets/img/rm-logo3.png");
+      background-size: 200px;
       background-repeat: no-repeat;
       background-position: center;
 
