@@ -1,8 +1,15 @@
 <template>
   <div class="container-fluid">
     <div class="row">
+      <div class="col-12 d-flex text-center align-items-center justify-content-center py-2">
+        <!-- make this match the homepage where it says Room-Me -->
+        <h2>
+          Welcome to the matches page, home of your future RoomMe!
+        </h2>
+      </div>
+    </div>
+    <div class="row">
       <MatchDetailsComponent v-for="match in matches" :key="match.id" :match-props="match" />
-      <h1> </h1>
     </div>
   </div>
 </template>
