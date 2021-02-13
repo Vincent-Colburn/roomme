@@ -24,7 +24,8 @@ class ProfileService {
 
   async getAll(userId) {
     // $ne is saying not equal, we are going to find all profiles where the ID is =/= to your userId
-    return await dbContext.Account.find({ id: { $ne: userId } }).populate('age, name, gender, location, aboutMe, imgURL, lookingFor, lowPriceRange, highPriceRange, interests, lifestyleOptions, room, anticipatedMoveInDate')
+    return await dbContext.Account.find({ id: { $ne: userId } }).select(['-email', '-subs'])
+    // populate('age, name, gender, location, anticipatedMoveInDate, aboutMe, imgURL, lookingFor, lowPriceRange, highPriceRange, interests, lifestyleOptions, lookingFor ')
   }
 
   // NOTE With a many to many relationship, will a get"" function go here??

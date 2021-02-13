@@ -127,10 +127,39 @@
               <label for="exampleInputEmail1">About Me</label>
               <textarea class="form-control" v-model="profile.aboutMe" rows="3"></textarea>
             </div>
-            <div class="form-group very-light-blue">
+            <div class="form-group border">
+              <label for="exampleradios1" class="very-light-blue d-flex">I am looking for: </label>
+              <div class="form-check">
+                <input class="form-check-input"
+                       type="radio"
+                       name="exampleRadios"
+                       id="exampleRadios1"
+                       value="roommate"
+                       v-model="profile.lookingFor"
+                       checked
+                >
+                <label class="form-check-label" for="exampleRadios1">
+                  RoomMe
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input"
+                       type="radio"
+                       name="exampleRadios"
+                       id="exampleRadios2"
+                       value="roommate with room"
+                       v-model="profile.lookingFor"
+                >
+                <label class="form-check-label" for="exampleRadios2">
+                  I have a room and need a RoomMe
+                </label>
+              </div>
+            </div>
+
+            <!-- <div class="form-group very-light-blue">
               <label for="exampleInputEmail1">Looking For</label>
               <input type="string" class="form-control" v-model="profile.lookingFor" placeholder="roommate, roommate with room">
-            </div>
+            </div> -->
             <div class="form-group very-light-blue">
               <label for="exampleInputEmail1">Price Range Low</label>
               <input type="string" class="form-control" v-model="profile.lowPriceRange">

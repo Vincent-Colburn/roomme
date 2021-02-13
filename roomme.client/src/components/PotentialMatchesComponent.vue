@@ -7,13 +7,19 @@
       </p>
     </div>
     <div class="demo__card__btm bg-light position-absolute all-0 d-flex flex-column w-100 h-100" style="overflow-y:scroll" id="msgWrap">
-      <p> <b>Available Starting: </b> {{ profileProps.anticipatedMoveInDate }} </p>
+      <span> <b>Available Starting: </b> {{ profileProps.anticipatedMoveInDate }} <b>Looking For: </b> {{ profileProps.lookingFor }} </span>
       <span class="text-center"> <b>Age: </b> {{ profileProps.age }} | <b>  Gender: </b> {{ profileProps.gender }} | <b>Monthly Budget: </b> {{ profileProps.lowPriceRange }} - {{ profileProps.highPriceRange }} </span>
       <p> </p>
       <p>
         <b>About Me: </b>
         <span>
           {{ profileProps.aboutMe }}
+        </span>
+      </p>
+      <p>
+        <b>Lifestyle: </b>
+        <span>
+          {{ profileProps.lifestyleOptions }}
         </span>
       </p>
       <p>
