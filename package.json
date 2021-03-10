@@ -1,18 +1,39 @@
 {
-  "name": "roomme",
+  "name": "codeworks-auth-starter",
   "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "build": "npm run setup:client && npm run setup:server && npm run build:client",
-    "setup:client": "cd roomme.client && npm i",
-    "setup:server": "cd roomme.server && npm i",
-    "build:client": "npm run --prefix roomme.client build",
-    "start": "node roomme.server/index.js"
+    "debug": "node index.js",
+    "start": "node roomme.server/index.js",
+    "dev": "node index.js",
+    "setup": "npm install",
+    "sass": "sass --watch client/assets/scss/main.scss:client/assets/style/main.css"
+  },
+  "author": "Codeworks",
+  "license": "ISC",
+  "dependencies": {
+    "@bcwdev/auth0provider": "^1.0.3",
+    "axios": "^0.21.1",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "esm": "^3.2.25",
+    "express": "^4.17.1",
+    "helmet": "^4.4.1",
+    "mongoose": "^5.11.12",
+    "socket.io": "2.3.0"
   },
   "engines": {
-    "node": "^14.15.4"
+    "node": "^14.0.0"
   },
-  "dependencies": {
-    "axios": "^0.21.1",
-    "vue2-interact": "0.0.3"
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "bootstrap": "^4.6.0",
+    "eslint": "^7.18.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "sass": "^1.32.4"
   }
 }
