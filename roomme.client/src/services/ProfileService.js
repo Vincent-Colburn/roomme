@@ -16,7 +16,7 @@ class ProfileService {
   async getProfiles() {
     const res = await api.get('api/profiles')
     AppState.profiles = res.data
-    console.log('hi i am trying to get your profiles master', AppState.profiles)
+    // console.log('hi i am trying to get your profiles master', AppState.profiles)
   }
 
   async editProfile(profileData) {
@@ -25,7 +25,7 @@ class ProfileService {
   }
 
   async dislike(id) {
-    console.log('dislike ID', id)
+    // console.log('dislike ID', id)
   }
 }
 export const profileService = new ProfileService()
