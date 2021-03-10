@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "serve": "roomme.server/vue-cli-service serve --open",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "build": "roomme.server/vue-cli-service build",
+    "lint": "roomme.server/vue-cli-service lint"
   },
   "dependencies": {
     "@bcwdev/auth0provider-client": "0.0.3",
