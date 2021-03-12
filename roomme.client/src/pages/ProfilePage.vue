@@ -1,5 +1,5 @@
 <template>
-  <div class="profile container-fluid background" v-if="state.profile.age">
+  <div class="profile container-fluid background" v-if="state.profile.name">
     <div class="row text-center my-3">
       <div class="col">
         <h1>Welcome to your <span class="primary">Profile</span> Page</h1>
@@ -71,15 +71,15 @@
       <!-- <div class="col"></div> -->
     </div>
   </div>
-  <div class="container" v-else>
-    <div class="row text-center my-5">
+  <!-- <div class="container" v-else>
+    <div class="row text-center">
       <div class="col">
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createProfileModal">
           Create Profile
         </button>
       </div>
     </div>
-  </div>
+  </div> -->
   <!-- Edit Profile Modal -->
   <!--    v-if="state.loaded == true" put this in the topmost div -->
   <div class="modal fade"
@@ -199,7 +199,7 @@
   </div>
 
   <!-- Create Profile Modal -->
-  <div class="modal fade"
+  <!-- <div class="modal fade"
        id="createProfileModal"
        tabindex="-1"
        role="dialog"
@@ -284,7 +284,7 @@
         </form>
       </div>
     </div>
-  </div>
+  </div> -->
 </template>
 
 <script>
