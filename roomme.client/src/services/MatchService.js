@@ -22,6 +22,11 @@ class MatchService {
     // console.log('this is the match profile', res.data)
     AppState.activeMatch = res.data
   }
+
+  async getCount() {
+    const res = await api.get('api/count')
+    AppState.count = res.data[0]
+  }
 }
 
 export const matchService = new MatchService()

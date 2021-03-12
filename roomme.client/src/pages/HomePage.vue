@@ -42,7 +42,7 @@
       <div class="row text-center">
         <div class="col">
           <h3 class="text">
-            Matches found: <span class="color">"INSERT HERE"</span>
+            Matches found: <span class="color">"{{ state.count }}"</span>
           </h3>
         </div>
       </div>
@@ -51,8 +51,27 @@
 </template>
 
 <script>
+import { matchService } from '../services/MatchService'
+import { computed, onMounted, reactive } from 'vue'
+import { logger } from '../utils/Logger'
+import { AppState } from '../AppState'
 export default {
-  name: 'Home'
+  name: 'Home',
+  setup() {
+    const state = reactive({
+      count: computed(() => AppState.count)
+    })
+    onMounted(() => {
+      try {
+        matchService.getCount()
+      } catch (error) {
+        logger(error)
+      }
+    })
+    return {
+      state
+    }
+  }
 }
 </script>
 

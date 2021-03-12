@@ -3,6 +3,11 @@ import { BadRequest } from '../utils/Errors'
 // import { myProfileService } from './MyProfileService'
 
 class MatchService {
+  async getCount() {
+    const num = await dbContext.Match.find({ matched: true })
+    return [num.length]
+  }
+
   async getMyMatches(id) {
     const matches = await dbContext.Match.find({ $or: [{ fromUserId: id, matched: true }, { toUserId: id, matched: true }] }).populate('fromUserId toUserId', 'name age imgURL lowPriceRange highPriceRange')
 

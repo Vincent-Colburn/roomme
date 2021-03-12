@@ -8,7 +8,8 @@ export const AppState = reactive({
   activeMatch: {},
   profiles: [],
   myProfile: {},
-  activeProfile: {}
+  activeProfile: {},
+  count: {}
 })
 
 // Active profile is for the searches page, when you are viewing a single potential match
